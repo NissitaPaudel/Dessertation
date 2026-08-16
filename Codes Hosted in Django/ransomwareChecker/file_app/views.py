@@ -799,11 +799,6 @@ def Solution(request):
                         "Not specified",
                     ),
 
-                    "confidence": metadata.get(
-                        "confidence",
-                        "Not specified",
-                    ),
-
                     "source": match_source,
                 }
 
@@ -910,7 +905,7 @@ def Solution(request):
 
             # Kept for compatibility with current template.
             # No permanent application copy was created.
-            context["file_deleted"] = True
+            context["file_deleted"] = False
 
             print(
                 "YARA scan completed: "
