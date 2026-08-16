@@ -1,0 +1,1179 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>YARAShield | File Scanner</title>
+
+    <style>
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: #010108;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0;
+            z-index: 1000;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        nav.scrolled {
+            background-color: black;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #f7f2f2;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.7;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+        }
+
+        #header {
+            min-height: 320px;
+            padding-top: 10%;
+            background-image: url("{% static 'background4.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #content {
+            min-height: 100vh;
+            background-color: #010108;
+        }
+
+        #footer {
+            min-height: 400px;
+            background-color: #111311;
+            color: #f6f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #0b0e11;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 2px solid #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #2a296e;
+        }
+
+        .button2 {
+            display: inline-block;
+            background-color: #ae3c3c;
+            color: #0d0a0a;
+            padding: 5px 20px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            margin-left: 2%;
+            margin-top: 3%;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .button2:hover {
+            background-color: #09090b;
+            border-color: #fff;
+            color: white;
+        }
+
+        .logo {
+            padding-left: 5%;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            margin-left: 6px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .logo img {
+            width: 20px;
+            height: 20px;
+        }
+
+        h1 {
+            font-weight: 200;
+            font-size: 50px;
+            color: white;
+            padding-left: 2%;
+            line-height: 50%;
+        }
+
+        h2 {
+            font-weight: 200;
+            font-size: 25px;
+            color: rgb(253, 248, 248);
+            padding-left: 2%;
+            margin-top: 5%;
+        }
+
+        h3 {
+            font-weight: 200;
+            line-height: 150%;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            margin: 0.25px;
+        }
+
+        .column {
+            flex: 2;
+            flex-basis: 5px;
+            flex-wrap: wrap;
+            padding: 3% 6% 11.8%;
+            margin-left: 2%;
+            box-shadow: 0 0 5px rgb(243, 241, 241);
+        }
+
+        .column h3 {
+            margin-top: 0;
+        }
+
+        .combined {
+            background-color: #010108;
+            min-height: 600px;
+            width: 100%;
+            margin-bottom: 5%;
+            padding-top: 20px;
+        }
+
+        .combined h3 {
+            margin-top: 0;
+        }
+
+        .combined p {
+            margin-bottom: 0;
+        }
+
+        .column2 {
+            flex: 2;
+            padding: 12% 10% 10% 20px;
+            background-color: #050505;
+            margin-right: 3%;
+            min-height: 300px;
+            box-shadow: 0 0 5px rgb(243, 241, 241);
+            color: #606060;
+        }
+
+        .column2 p {
+            font-size: 16px;
+            text-align: justify;
+            padding-left: 30%;
+            margin-top: -20%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #606060;
+            line-height: 40px;
+        }
+
+        .box {
+            width: 20%;
+            min-width: 210px;
+            margin: 20px 15px;
+            min-height: 230px;
+            background-color: #1b1b1b;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .box form input[type="email"] {
+            background-color: black;
+            color: #f1f1f1;
+            border: 2px solid #606060;
+            padding: 10px;
+            width: 200px;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+        .box form button[type="submit"] {
+            background-color: black;
+            color: #c5c5c5;
+            border: 2px solid #606060;
+            padding: 13px 20px;
+            transition: background-color 0.3s;
+            border-radius: 5px;
+        }
+
+        .box form button[type="submit"]:hover {
+            background-color: #2e2e5b;
+            cursor: pointer;
+        }
+
+        th {
+            border: 1px solid #606060;
+            color: white;
+        }
+
+        .combined form input[type="file"] {
+            display: inline-block;
+            background-color: #242424;
+            color: #f2e8e8;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            margin-left: 2%;
+            margin-top: 3%;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .combined form input[type="file"]:hover {
+            background-color: #09090b;
+            color: white;
+        }
+
+        .combined form button[type="submit"] {
+            display: inline-block;
+            background-color: #ae3c3c;
+            color: #0d0a0a;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            margin-left: 2%;
+            margin-top: 3%;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .combined form button[type="submit"]:hover {
+            background-color: #09090b;
+            border-color: #fff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .combined form button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #009688;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+        }
+
+        .information-box {
+            width: 80%;
+            margin: 30px auto 0;
+            padding: 15px;
+            border: 1px solid #606060;
+            border-radius: 5px;
+            background-color: #111111;
+            color: #d7d7d7;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .error-box {
+            width: 80%;
+            margin: 30px auto 0;
+            padding: 15px;
+            border: 1px solid #c75b5b;
+            border-radius: 5px;
+            background-color: #2a1111;
+            color: #ffb3b3;
+            box-sizing: border-box;
+        }
+
+        .warning-box {
+            width: 80%;
+            margin: 30px auto 0;
+            padding: 20px;
+            border: 2px solid #d65a5a;
+            border-radius: 5px;
+            background-color: #2a1010;
+            box-sizing: border-box;
+        }
+
+        .safe-box {
+            width: 80%;
+            margin: 30px auto 0;
+            padding: 20px;
+            border: 2px solid #3f9d67;
+            border-radius: 5px;
+            background-color: #0f2418;
+            box-sizing: border-box;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 850px) {
+            nav {
+                position: relative;
+                background-color: black;
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #header {
+                padding-top: 40px;
+            }
+
+            h1 {
+                font-size: 34px;
+                line-height: 100%;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .column,
+            .column2 {
+                margin: 15px;
+                padding: 30px;
+            }
+
+            .column2 p {
+                padding-left: 0;
+                margin-top: 0;
+            }
+
+            #footer {
+                flex-direction: column;
+            }
+
+            .box {
+                width: 80%;
+            }
+
+            .information-box,
+            .error-box,
+            .warning-box,
+            .safe-box {
+                width: 92%;
+            }
+        }
+    </style>
+
+    <script>
+        window.addEventListener("scroll", function () {
+            const navigation = document.querySelector("nav");
+
+            if (window.scrollY > 0) {
+                navigation.classList.add("scrolled");
+            } else {
+                navigation.classList.remove("scrolled");
+            }
+        });
+
+        function showLoadingMessage() {
+            const fileInput = document.getElementById("file");
+            const loadingArea = document.getElementById("loading");
+            const scanButton = document.getElementById("scan-button");
+
+            if (!fileInput.files.length) {
+                return false;
+            }
+
+            loadingArea.style.display = "block";
+            scanButton.disabled = true;
+
+            return true;
+        }
+    </script>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <img
+                src="{% static 'logo.PNG' %}"
+                alt="YARAShield logo"
+            >
+
+            <p class="logo-text">YARAShield</p>
+        </div>
+
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+
+            <li>
+                <a
+                    href="#"
+                    onclick="location.reload(); return false;"
+                >
+                    Solution
+                </a>
+            </li>
+
+            <li>
+                <a href="About.html">About</a>
+            </li>
+
+            <li>
+                <a href="Program.html">Programs</a>
+            </li>
+
+            <li>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link"
+                    class="button"
+                >
+                    Get Started
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div id="header">
+        <h1>Dive Into the New Age of</h1>
+        <h1>Cyber Security</h1>
+        <h2>Our Security</h2>
+    </div>
+
+
+    <div id="content">
+
+        <div class="combined">
+
+            <table
+                style="
+                    width: 95%;
+                    margin-left: 2%;
+                    margin-right: 5%;
+                    border-collapse: collapse;
+                    margin-top: -2%;
+                "
+            >
+
+                <tr>
+                    <th style="width: 20%; height: 200px;">
+                        <img
+                            src="{% static 'ransomware-detection2.png' %}"
+                            alt="Ransomware detection"
+                            height="55"
+                            width="60"
+                            style="
+                                border-radius: 5px;
+                                margin-top: 2%;
+                                margin-bottom: 2%;
+                            "
+                        >
+                    </th>
+
+                    <th>
+                        <a href="#scanning">
+                            <h2 style="text-align: left; margin-top: -5%;">
+                                Ransomware Detection
+                            </h2>
+                        </a>
+
+                        <p
+                            style="
+                                color: #909090;
+                                font-size: 14px;
+                                text-align: left;
+                                padding-left: 30px;
+                            "
+                        >
+                            Upload a file for rule-based ransomware screening.
+                            YARAShield scans a temporary copy without executing
+                            it and reports any matched YARA rules.
+                        </p>
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 20%; height: 200px;">
+                        <img
+                            src="{% static 'KYDS2.png' %}"
+                            alt="Pre-execution file screening"
+                            height="55"
+                            width="60"
+                            style="
+                                border-radius: 5px;
+                                margin-top: 2%;
+                                margin-bottom: 2%;
+                            "
+                        >
+                    </th>
+
+                    <th>
+                        <a href="#scanning">
+                            <h2 style="text-align: left; margin-top: -5%;">
+                                Pre-execution File Screening
+                            </h2>
+                        </a>
+
+                        <p
+                            style="
+                                color: #909090;
+                                font-size: 14px;
+                                text-align: left;
+                                padding-left: 30px;
+                            "
+                        >
+                            The uploaded copy is inspected before execution.
+                            Results include the name of any matched YARA rule.
+                        </p>
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 20%; height: 200px;">
+                        <img
+                            src="{% static 'DCF2.png' %}"
+                            alt="Temporary file cleanup"
+                            height="55"
+                            width="60"
+                            style="
+                                border-radius: 5px;
+                                margin-top: 2%;
+                                margin-bottom: 2%;
+                            "
+                        >
+                    </th>
+
+                    <th>
+                        <a href="#scanning">
+                            <h2 style="text-align: left; margin-top: -5%;">
+                                Temporary File Cleanup
+                            </h2>
+                        </a>
+
+                        <p
+                            style="
+                                color: #909090;
+                                font-size: 14px;
+                                text-align: left;
+                                padding-left: 30px;
+                            "
+                        >
+                            The uploaded file was scanned in memory only and released after scanning. The original file selected on the user's
+                            computer is not changed or deleted.
+                        </p>
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 20%; height: 200px;">
+                        <img
+                            src="{% static 'FCES2.png' %}"
+                            alt="Customer support"
+                            height="55"
+                            width="60"
+                            style="
+                                border-radius: 5px;
+                                margin-top: 2%;
+                                margin-bottom: 2%;
+                            "
+                        >
+                    </th>
+
+                    <th>
+                        <a href="Program.html">
+                            <h2 style="text-align: left; margin-top: -5%;">
+                                Full Customer Experience Service
+                            </h2>
+                        </a>
+
+                        <p
+                            style="
+                                color: #909090;
+                                font-size: 14px;
+                                text-align: left;
+                                padding-left: 30px;
+                            "
+                        >
+                            Contact us by email or through our online form for
+                            further information about YARAShield.
+                        </p>
+                    </th>
+                </tr>
+
+            </table>
+
+
+            <table
+                style="
+                    width: 95%;
+                    margin-left: 2%;
+                    margin-right: 5%;
+                    border-collapse: collapse;
+                "
+            >
+
+                <tr id="scanning">
+                    <th
+                        style="
+                            width: 95%;
+                            min-height: 800px;
+                            padding: 50px 10px;
+                        "
+                    >
+
+                        <h2
+                            style="
+                                text-align: center;
+                                margin-top: 5%;
+                                padding-left: 0;
+                            "
+                        >
+                            Choose a File to Scan for Suspicious
+                            Ransomware Patterns
+                        </h2>
+
+
+                        <form
+                            method="post"
+                            enctype="multipart/form-data"
+                            onsubmit="return showLoadingMessage();"
+                        >
+                            {% csrf_token %}
+
+                            <label
+                                for="file"
+                                style="color: #b5b5b5;"
+                            >
+                                Select a file:
+                            </label>
+
+                            <h3
+                                style="
+                                    text-align: center;
+                                    color: teal;
+                                    margin-top: 20px;
+                                "
+                            >
+                                The YARA rules included in this version were
+                                reviewed or updated through 2026.
+                            </h3>
+
+                            <p
+                                style="
+                                    color: #b5b5b5;
+                                    text-align: center;
+                                    margin: 10px auto;
+                                    max-width: 800px;
+                                "
+                            >
+                                A non-match does not guarantee that a file is
+                                safe. Unknown, packed, obfuscated or unsupported
+                                malware may not be covered by the installed
+                                rules.
+                            </p>
+
+                            <input
+                                type="file"
+                                name="file"
+                                id="file"
+                                required
+                            >
+
+                            <button
+                                type="submit"
+                                id="scan-button"
+                            >
+                                Scan
+                            </button>
+                        </form>
+
+
+                        <div
+                            id="loading"
+                            style="
+                                display: none;
+                                margin-top: 25px;
+                            "
+                        >
+                            <div
+                                class="spinner"
+                                style="margin: 0 auto;"
+                            ></div>
+
+                            <p>
+                                Please wait while the temporary copy is being
+                                scanned...
+                            </p>
+                        </div>
+
+
+                        {% if permission_error %}
+
+                            <div class="error-box">
+                                <strong>Scan error:</strong>
+                                {{ permission_error }}
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if file_name %}
+
+                            <div class="information-box">
+
+                                <p>
+                                    <strong>Uploaded filename:</strong>
+                                    {{ file_name }}
+                                </p>
+
+                                {% if file_size1 != None %}
+
+                                    <p>
+                                        <strong>File size:</strong>
+                                        {{ file_size1 }} bytes
+                                        ({{ file_size }} MB)
+                                    </p>
+
+                                {% endif %}
+
+                                {% if mod_time %}
+
+                                    <p>
+                                        <strong>
+                                            Temporary-copy modified time:
+                                        </strong>
+
+                                        {{ mod_time }}
+                                    </p>
+
+                                {% endif %}
+
+                                {% if creat_time %}
+
+                                    <p>
+                                        <strong>
+                                            Temporary-copy created time:
+                                        </strong>
+
+                                        {{ creat_time }}
+                                    </p>
+
+                                {% endif %}
+
+                                {% if access_time %}
+
+                                    <p>
+                                        <strong>
+                                            Temporary-copy access time:
+                                        </strong>
+
+                                        {{ access_time }}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if ransomware_alert == True %}
+
+                            <div class="warning-box">
+
+                                <p
+                                    style="
+                                        color: #ff7676;
+                                        font-size: 28px;
+                                        margin: 0 0 12px;
+                                    "
+                                >
+                                    DANGER: POTENTIAL RANSOMWARE DETECTED
+                                </p>
+
+                                <p style="color: #f4f4f4;">
+                                    The uploaded file matched one or more
+                                    ransomware-related YARA rules.
+                                </p>
+
+                                {% if name %}
+
+                                    <p style="color: #f4f4f4;">
+                                        <strong>Matched rule(s):</strong>
+
+                                        <span style="color: #ff7676;">
+                                            {{ name }}
+                                        </span>
+                                    </p>
+
+                                {% endif %}
+
+                                <p style="color: #ffb3b3;">
+                                    <strong>
+                                        Do not open or execute this file until
+                                        it has been investigated further.
+                                    </strong>
+                                </p>
+
+                                <p style="color: #d7d7d7;">
+                                    A YARA match indicates that suspicious
+                                    static patterns were found. It should not
+                                    be treated as conclusive proof that the file
+                                    contains ransomware without further
+                                    analysis.
+                                </p>
+
+                                {% if file_deleted %}
+
+                                    <p style="color: #c9f7d4;">
+                                        The uploaded file was scanned in memory only and released after scanning. Your original file was not
+                                        modified or deleted.
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+
+                        {% elif ransomware_alert == False %}
+
+                            <div class="safe-box">
+
+                                <p
+                                    style="
+                                        color: #78d69c;
+                                        font-size: 28px;
+                                        margin: 0 0 12px;
+                                    "
+                                >
+                                    This file does not match the ransomware ruleset in our database.
+                                </p>
+
+                                <p style="color: #d7d7d7;">
+                                    This result does not prove that the file is
+                                    safe. Unknown, packed, obfuscated or
+                                    unsupported malware may not be covered by
+                                    the installed ruleset.
+                                </p>
+
+                                <p style="color: #c9f7d4;">
+                                    The uploadedfile was held in memory only and released after scanning. Your original file was not modified or deleted.
+                                </p>
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if not file_name and not permission_error %}
+
+                            <p
+                                style="
+                                    color: #909090;
+                                    margin-top: 25px;
+                                "
+                            >
+                                No file has been uploaded.
+                            </p>
+
+                        {% endif %}
+
+                    </th>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <div class="container">
+
+            <div
+                class="column"
+                style="
+                    background-image:
+                        url('{% static "background6.png" %}');
+                    background-size: 95%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    min-height: 300px;
+                "
+            >
+                <h3
+                    style="
+                        font-size: 25px;
+                        text-align: center;
+                        margin-top: 10%;
+                    "
+                >
+                    <br><br><br>
+
+                    Ransomware Attacks Can Cause Significant Losses.
+
+                    <br>
+
+                    Learn How to Reduce the Risk.
+                </h3>
+            </div>
+
+
+            <div class="column2">
+
+                <p>
+                    Ransomware attacks can prevent users from accessing their
+                    data and may cause serious operational and financial
+                    disruption. Individuals and organisations can reduce their
+                    exposure by maintaining backups, applying security updates,
+                    using endpoint protection, restricting privileges and
+                    treating unexpected files with caution. YARAShield provides
+                    preliminary rule-based screening and should be used as part
+                    of a wider layered-security approach.
+                </p>
+
+                <a
+                    href="Program.html"
+                    class="button2"
+                    style="margin-left: 30%;"
+                >
+                    Learn More
+                </a>
+            </div>
+
+        </div>
+
+
+        <div id="footer">
+
+            <div
+                class="box"
+                style="background-color: transparent;"
+            >
+                <div class="logo">
+                    <img
+                        src="{% static 'logo.PNG' %}"
+                        alt="YARAShield logo"
+                    >
+
+                    <p class="logo-text">YARAShield</p>
+                </div>
+
+                <p
+                    style="
+                        line-height: 40px;
+                        padding-left: 10%;
+                        color: #909090;
+                    "
+                >
+                    +44 7352128727
+
+                    <br>
+
+                    nissitapdl19@gmail.com
+
+                    <br>
+
+                    United Kingdom
+                </p>
+            </div>
+
+
+            <div
+                class="box"
+                style="background-color: transparent;"
+            >
+                <a href="/">Home</a>
+
+                <br>
+
+                <a href="Solution.html">Solution</a>
+
+                <br>
+
+                <a href="About.html">About</a>
+
+                <br>
+
+                <a href="Program.html">Programs</a>
+
+                <br>
+
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link"
+                    class="button2"
+                    style="margin-left: -1%;"
+                >
+                    Get Started
+                </a>
+            </div>
+
+
+            <div
+                class="box"
+                style="background-color: transparent;"
+            >
+                <br>
+
+                <form
+                    action="https://formspree.io/f/xyyaerjq"
+                    method="POST"
+                >
+                    <label
+                        for="email"
+                        style="color: #909090;"
+                    >
+                        Subscribe to Our Newsletter
+                    </label>
+
+                    <br>
+
+                    <p style="color: #909090;">
+                        Email*
+                    </p>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    >
+
+                    <br><br>
+
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+
+            <div
+                class="box"
+                style="background-color: transparent;"
+            >
+                <p
+                    style="
+                        color: #909090;
+                        margin-bottom: -6%;
+                        margin-left: 12%;
+                    "
+                >
+                    Follow Us On:
+                </p>
+
+                <div style="margin-left: 12%; margin-top: 20px;">
+
+                    <a
+                        href="https://www.facebook.com"
+                        aria-label="Facebook"
+                    >
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    &nbsp;
+
+                    <a
+                        href="https://www.linkedin.com"
+                        aria-label="LinkedIn"
+                    >
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+
+                    <p
+                        style="
+                            color: #909090;
+                            font-size: 12px;
+                            margin-top: 3%;
+                        "
+                    >
+                        © 2026 by YARAShield.
+
+                        <br>
+
+                        Created by
+
+                        <br>
+
+                        Nischita Paudel
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

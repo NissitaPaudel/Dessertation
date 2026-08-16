@@ -1,0 +1,438 @@
+{% load static %}<!-- this loads the static files for the project -->
+<!--this begins the html code-->
+<!DOCTYPE html>
+<html> 
+  <head> <!-- this includes the metadata about the page including the stylesheets and scripts -->
+    <style>
+      /*this provides effects on the visible areas of the browser window */
+      /* CSS code goes here */
+      /* this provides the effect to the visible area of the body section */
+      body {
+        height: 100vh;
+        overflow: scroll;/* this adds a scrollbar to the content exceeding it's height */
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+    }
+
+    /* this creates a flexible, fixed, evenly distributed centered items with transparent background */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0px; 
+    }
+
+    /* this creates a black background to the navigation bar on scrolling */ 
+    nav.scrolled{
+        background-color: black;
+    }
+
+    /* This applies style to lists within the navigation bar */
+    nav ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    /* This applies style to the list items within the navigation bar */
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    /* this applies style to all anchor tags within nav bar */
+    nav ul li a {
+        color: #f7f2f2;
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    /* this applies style to the anchor tags when hover over within the navigation bar */
+    nav ul li a:hover {
+        opacity: 1;
+    } 
+
+    /* this provides style to the html element with ID 'header' */
+    #header {
+        height: 35%;
+        padding-top: 10%;
+        background-image: url("{% static 'background5.gif' %}");
+        background-repeat: no repeat;
+        background-size: cover;
+    }
+
+    /* this provides style to the html element with ID 'content' */
+    #content {
+        height: cover;
+        background-color: #010108;
+    }
+  
+    /* this provides style to the html element with ID 'footer' 
+        where the display is flexible and it will stick to the bottom of the viewport with browser compatibility */
+    #footer {
+        height: 400px;
+        background-color: #111311;
+        color: #f6f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+        justify-content: center;
+        position: -webkit-sticky;
+        width: 100%;
+    }
+    
+    /* this provides style to the button element with a transition effect */
+    .button {
+        display: inline-block;
+        background-color: #0b0e11;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    /* this changes background color when hover over */
+    .button:hover {
+        background-color: #2a296e;
+        
+    }
+
+    /* this provides style to the button element with a transition effect */
+    .button2 {
+        display: inline-block;
+        background-color: #ae3c3c;
+        color: #0d0a0a;
+        padding: 5px 20px;
+        border-radius: 5px;
+        border-width: 2px;
+        margin-left: 2%;
+        margin-top: 3%;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    /* this changes background color with style when hover over */
+    .button2:hover {
+        background-color: #09090b;
+        border-radius: 5px;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        color: white;
+    }
+
+    /* this provides style to location to place a logo */
+    .logo {
+        padding-left: 5%;
+        display: flex;
+        align-items: center;
+    }
+
+    /* this provides style to the text appeared beside the logo */
+    .logo-text{
+        margin-left: 6px;
+        color: white;
+        font-weight: 700;
+    }
+
+    /* this provides the height and width of the logo */
+    .logo img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* this provides the style for heading 1 */ 
+    h1 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 50px;
+        color: white;
+        padding-left: 2%;
+        line-height: 50%;
+    }
+
+    /* this provides the style for heading 2 */
+    h2 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 25px;
+        color: rgb(253, 248, 248);
+        padding-left: 2%;
+        margin-top: 5%;
+    }
+
+    /* this provides the style for  heading 3 */
+    h3 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        line-height: 150%;
+        color: white;
+    }
+
+    /* this provides a flexible container that holds a set of columns */
+    .container {
+        display:flex;
+        flex-direction: row;
+        margin: 0.25px;
+    }
+
+    /* this sets the style for each individual flexible column */
+    .column {
+        flex: 2;          
+        flex-basis: 5px;
+        flex-wrap: wrap;
+        padding: 10px;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 3%;
+        padding-bottom: 7.75%;
+        margin-left: 2%;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+    }
+        
+    /* this sets the margin of heading 3 in '.column' class */
+    .column h3 {
+        margin-top: 0px;
+    }
+
+    /* this sets the style for each individual flexible column */
+    .column2 {
+        flex: 2;
+        padding: 20px 20px;
+        background-color: #050505;
+        padding-right: 12%;
+        padding-bottom: 3%;
+        justify-content: space-between;
+        padding-top: 12%;
+        margin-right: 3%;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+        color: #606060;
+    }
+
+    /* this sets the style of paragraph within the column */
+    .column2 p {
+        font-size: 16px;
+        text-align:justify;
+        padding-left:30%;
+        margin-top: -20%;
+    }
+
+    /* this sets the style for anchor used to create a hyperlink or link */
+    a {
+        text-decoration: none;
+        color: #606060;
+        line-height: 40px;
+        
+    }
+
+    /* This provides style for a rectangular box */
+    .box {
+        width: 37%;
+        margin-bottom: 20px;
+        height: 230px;
+        margin-left: 30px;
+        background-color: #1b1b1b;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+
+    /* This provides style for email input field within the class '.box' */
+    .box form input[type="email"] {
+        background-color: black;
+        color: #606060;
+        border: 2px solid #606060;;
+        padding: 10px;
+        width: 200px;
+        height: 20px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+
+    /* This provides style for the submission button within the '.box' class */
+    .box form button[type="submit"] {
+        background-color: black;
+        color: #606060;
+        border: 2px solid #606060;
+        padding: 13px 20px;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+    
+    /* this changes background color of submission button when hovered over */
+    .box form button[type="submit"]:hover {
+        background-color: #2e2e5b;
+        cursor: pointer;
+    }
+
+    /* this sets the style for each individual flexible column */
+    .column3 {
+        flex: 2;          
+        flex-basis: 5px;
+        flex-wrap: wrap;
+        padding: 10px;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 3%;
+        height: 260px;
+        margin-right: 3%;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+    }
+    
+    /* this sets the style for each individual flexible column */
+    .column4 {
+        flex: 2;
+        padding: 20px 20px;
+        background-color: #050505;
+        padding-right: 10%;
+        padding-bottom: 5%;
+        justify-content: space-between;
+        padding-top: 12%;
+        margin-left: 2%;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+        color: #606060; 
+        margin-bottom: 5%;        
+    }
+
+    /* this sets the style for the  paragraph within the '.column4' class */
+    .column4 p {
+        font-size: 16px;
+        text-align:justify;
+        padding-left:30%;
+        margin-top: -20%;
+    }
+
+    /* CSS coding ends */
+    </style>
+
+    <!-- this is a javascript used for the scroll and navigation element -->
+    <script>
+        /* this javascript adds class 'scrolled' when the user scrolls down and remoes it when the user is at the top of the page */
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('nav');
+            const scrollPosition = window.scrollY;
+          
+            if (scrollPosition > 0) {
+              header.classList.add('scrolled');
+            } else {
+              header.classList.remove('scrolled');
+            }
+          });
+    </script>
+
+    <!-- this includes an external resources such as a font-awesome stylesheet used to include it's library providing a sets of icons and symbols that cna be used within the webpage-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />   
+  </head>
+
+
+  <body>
+    <!-- this is the main content area -->
+    <!-- the displays the elements in the navigation bar -->
+    <nav>
+        <!-- this displays the logo and text with the brand name 'YARAShield' (YARA Shield)-->
+        <div class="logo">
+            <img src="{% static 'logo.PNG' %}" alt="Logo">
+            <p class="logo-text">YARAShield</p>
+        </div>
+
+        <!-- this displays the anchor that don't have specific order for a list in navigation bar -->
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="Solution.html">Solution</a></li>
+            <li><a href="About.html"  onclick="location.reload();">About</a></li>
+            <li><a href="Program.html">Programs</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button">Get Started</a></li>
+        </ul>
+
+    </nav>
+    <!-- this is a header section-->
+    <div id="header">
+    <h1>Our Mission</h1>
+    <h2 style="width:30%; text-align:justify; font-size:16px; margin-top:1.5%;">We aim to help individuals and organizations protect themselves from the increasing threat of ransomware attacks. By leveraging sophisticated technology and algorithms, these systems are designed to identify and neutralize potential threats before they can cause damage, enabling users to take proactive steps to safeguard their data and systems.</h2>
+    </div>
+    
+    <!-- this is a content section-->
+    <div id="content">
+        <div class="container">
+            <!-- this is a container containing two columns where the first column contains an image and a title whereas the second column contains a paragraph-->
+            <div class="column" style="background-image: url({% static 'background3.png' %}); background-size: 95%; background-position: center; background-repeat: no-repeat;height:30%;">       
+                <h3 style="font-size: 25px; text-align: center;"><br><br><br>Why us?</h3>
+            </div>
+            <div class="column2">
+                <p>Whether through real-time monitoring, automated alerts, or other innovative features, ransomware detection websites provide a critical layer of protection against this growing threat, helping users stay one step ahead of cybercriminals and minimizing the potential impact of an attack. With the right ransomware detection website system in place, individuals and organizations can gain the peace of mind they need to focus on what really matters - running their businesses and living their lives with confidence and security.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- this is a content section-->
+    <div id="content">
+        <!-- this is a container containing two columns where the second column contains an image and a title whereas the first column contains a paragraph-->
+        <div class="container">
+            <div class="column4">
+                <p>Whether through real-time monitoring, automated alerts, or other innovative features, ransomware detection websites provide a critical layer of protection against this growing threat, helping users stay one step ahead of cybercriminals and minimizing the potential impact of an attack. With the right ransomware detection website system in place, individuals and organizations can gain the peace of mind they need to focus on what really matters - running their businesses and living their lives with confidence and security.</p>
+            </div>
+            <div class="column3" style="background-image: url({% static 'background7.gif' %}); background-size: cover; background-position: center; background-repeat: no-repeat;"> 
+            </div>
+        </div>
+    </div>
+
+    <!-- This is the footer section which includes logo, contact information, navigation links, a newletter subscription form and a social media links -->
+    <div id="footer">
+        <div class="box" style="background-color:transparent;">
+            <div class="logo">
+                <img src="{% static 'logo.PNG' %}" alt="Logo">
+                <p class="logo-text">YARAShield</p>
+            </div>
+            <p style="line-height: 40px; padding-left: 10%;color:#606060;">+44 7352128727<br>
+
+               nissitapdl19@gmail.com<br>
+    
+                United Kingdom</p>
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <a href="Home.html">Home</a><br>
+            <a href="Solution.html">Solution</a><br>
+            <a href="About.html">About</a><br>
+            <a href="Program.html">Programs</a><br>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button2" style="margin-left: -1%;">Get Started</a>
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <br>
+            <form action="https://formspree.io/f/xyyaerjq" method="POST">
+                <label for="email" style="color:#606060;">Subscribe to Our Newsletter</label>
+                <br>
+                <p style="color:#606060">Email*</p>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                <button type="submit">submit</button>
+            </form>
+               
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <p style="color:#606060; margin-bottom:-6%; margin-left: 12%;">Follow Us On:</p>
+            <ul>
+                <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a> &nbsp;
+                <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a> &nbsp;
+                <p style="color:#606060; font-size:12px;margin-top:3%;">© 2026 by YARAShield.<br> Created by <br>Nischita Paudel</p>
+              </ul>
+            </div>
+    </div>
+  </body>
+</html>
+

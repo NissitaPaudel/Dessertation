@@ -1,0 +1,379 @@
+{% load static %}<!-- this loads the static files for the project -->
+<!--this begins the html code-->
+<!DOCTYPE html>
+<html> 
+  <head> <!-- this includes the metadata about the page including the stylesheets and scripts -->
+    <style>
+      /*this provides effects on the visible areas of the browser window */
+      /* CSS code goes here */
+      /* this provides the effect to the visible area of the body section */
+      body {
+        height: 100vh;
+        overflow: scroll;/* this adds a scrollbar to the content exceeding it's height */
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+    }
+
+    /* this creates a flexible, fixed, evenly distributed centered items with transparent background */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0px;
+        
+        
+    }
+    
+    /* this creates a black background to the navigation bar on scrolling */ 
+    nav.scrolled{
+        background-color: black;
+    }
+
+    /* This applies style to lists within the navigation bar */
+    nav ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    /* This applies style to the list items within the navigation bar */
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    /* this applies style to all anchor tags within nav bar */
+    nav ul li a {
+        color: #f7f2f2;
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    /* this applies style to the anchor tags when hover over within the navigation bar */
+    nav ul li a:hover {
+        opacity: 1;
+    }
+
+    /* this provides style to the html element with ID 'header' */
+    #header {
+        height: 35%;
+        padding-top: 10%;
+        background-image: url("{% static 'background4.png' %}");
+    }
+
+    /* this provides style to the html element with ID 'content' */
+    #content {
+        height: cover;
+        background-color: #010108;
+    }
+  
+    /* this provides style to the html element with ID 'footer' 
+        where the display is flexible and it will stick to the bottom of the viewport with browser compatibility */
+    #footer {
+        height: 400px;
+        background-color: #111311;
+        color: #f6f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+        justify-content: center;
+        position: -webkit-sticky;
+        width: 100%;
+    }
+      
+    /* this provides style to the button element with a transition effect */
+    .button {
+        display: inline-block;
+        background-color: #0b0e11;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    /* this changes background color when hover over */
+    .button:hover {
+        background-color: #2a296e;
+        
+    }
+
+    /* this provides style to the button element with a transition effect */
+    .button2 {
+        display: inline-block;
+        background-color: #ae3c3c;
+        color: #0d0a0a;
+        padding: 5px 20px;
+        border-radius: 5px;
+        border-width: 2px;
+        margin-left: 2%;
+        margin-top: 3%;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    /* this changes background color with style when hover over */
+    .button2:hover {
+        background-color: #09090b;
+        border-radius: 5px;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        color: white;
+    }
+
+    /* this provides style to location to place a logo */
+    .logo {
+        padding-left: 5%;
+        display: flex;
+        align-items: center;
+    }
+
+    /* this provides style to the text appeared beside the logo */
+    .logo-text{
+        margin-left: 6px;
+        color: white;
+        font-weight: 700;
+    }
+
+    /* this provides the height and width of the logo */
+    .logo img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* this provides the style for heading 1 */ 
+    h1 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 50px;
+        color: white;
+        padding-left: 2%;
+        line-height: 50%;
+    }
+
+    /* this provides the style for heading 2 */
+    h2 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 25px;
+        color: rgb(253, 248, 248);
+        padding-left: 2%;
+        margin-top: 5%;
+    }
+
+    /* this provides the style for  heading 3 */
+    h3 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        line-height: 150%;
+        color: white;
+    }
+
+    /* this provides a flexible container that holds a set of columns */
+    .container {
+        display:flex;
+        flex-direction: row;
+        margin: 0.25px;
+        background-color: black;
+    }
+
+    /* this sets the style for anchor used to create a hyperlink or link */
+    a {
+        text-decoration: none;
+        color: #606060;
+        line-height: 40px;
+        
+    }
+
+    /* This provides style for a rectangular box */
+    .box {
+        width: 37%;
+        margin-bottom: 20px;
+        height: 230px;
+        margin-left: 30px;
+        background-color: #1b1b1b;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+
+    /* This provides style for email input field within the class '.box' */
+    .box form input[type="email"] {
+        background-color: black;
+        color: #606060;
+        border: 2px solid #606060;;
+        padding: 10px;
+        width: 200px;
+        height: 20px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+
+    /* This provides style for the submission button within the '.box' class */
+    .box form button[type="submit"] {
+        background-color: black;
+        color: #606060;
+        border: 2px solid #606060;
+        padding: 13px 20px;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+    
+    /* this changes background color of submission button when hovered over */
+    .box form button[type="submit"]:hover {
+        background-color: #2e2e5b;
+        cursor: pointer;
+    }
+
+    /* this provides style to table headings */
+    th{
+        border:1px solid #606060;
+        color: white;
+        margin-bottom: 5%;
+        width:32%; 
+        height:200px;
+    } 
+
+    /* this provides style to table */
+    table{
+        width:95%;
+        margin-left:2%; 
+        margin-right:5%;
+        margin-top:-2%;
+        border-collapse: collapse;
+    }
+
+    /* CSS coding ends */
+    </style>
+
+    <!-- this is a javascript used for the scroll and navigation element -->
+    <script>
+        /* this javascript adds class 'scrolled' when the user scrolls down and remoes it when the user is at the top of the page */
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('nav');
+            const scrollPosition = window.scrollY;
+          
+            if (scrollPosition > 0) {
+              header.classList.add('scrolled');
+            } else {
+              header.classList.remove('scrolled');
+            }
+          });          
+    </script>
+
+    <!-- this includes an external resources such as a font-awesome stylesheet used to include it's library providing a sets of icons and symbols that cna be used within the webpage-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />   
+  </head>
+
+
+  <body>
+   <!-- this is the main content area -->
+    <!-- the displays the elements in the navigation bar -->
+    <nav>
+        <!-- this displays the lgogo and text with the brand name YARAShield (YARA Shield)-->
+        <div class="logo">
+            <img src="{% static 'logo.PNG' %}" alt="Logo">
+            <p class="logo-text">YARAShield</p>
+        </div>
+
+        <!-- this displays the anchor that don't have specific order for a list in navigation bar -->
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="Solution.html">Solution</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="#"onclick="location.reload();">Programs</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button">Get Started</a></li>
+        </ul>
+
+    </nav>
+    <!-- this is a header section-->
+    <div id="header">
+    <h1>Ransomware Recovery Programs</h1>
+    <h2>If your system is alread infected by ransomware then<br> you can browse the following plans to solve the problem.</h2>
+    </div>
+    <!-- this is a content section-->
+    <div id="content">
+        <!-- this section displays a table with 3 columns which displays infromation about clickable ransomware decryption tools and recovery/backups services-->
+        <table>
+            <tr>
+               <th><img src="{% static 'ransomware-detection3.png' %}" alt="medium photo" height="300px" width="400px" style="border-radius:5px; border-width:2px; margin-top:1%; margin-bottom:2%;">
+                    <a href="https://noransom.kaspersky.com/#"><h2 style="text-align: left; margin-top:5%;">Ransomware Decryptors</h2></a>
+                    <p style="color:#606060; font-size:14px; text-align: left; padding-left:30px; text-align:justify; padding-right:5%;">Decrypts files affected by Rannoh, AutoIt, Fury, Cryakl, Crybola, CryptXXX (versions 1, 2 and 3), Polyglot aka Marsjoke, Yanluowang, Rakhni, Agent.iih, Aura, Autoit, Pletor, Rotor, Lamer, Cryptokluchen, Lortok, Democry, Bitman, TeslaCrypt (version 3 and 4), Chimera, Crysis (versions 2 and 3), Jaff, Dharma, new versions of Cryakl ransomware, Yatron, FortuneCrypt, Fonix, Maze, Sekhmet, Egregor, Shade, CoinVault, Bitcryptor, Wildfire, Xorist, and Vandev.</p>
+                    <h3 style="text-align: left; padding-left: 5%">COST: FREE</H3>
+                </th>
+                <th><img src="{% static 'KYDS3.png' %}" alt="medium photo" height="300px" width="400px" style="border-radius:5px; border-width:2px; margin-top:1%; margin-bottom:3%;"> 
+                    <a href="https://www.avast.com/ransomware-decryption-tools#pc"><h2 style="text-align: left; margin-top:5%;">Ransomware Decryption Tool</h2></a>
+                    <p style="color:#606060; font-size:14px; text-align: left; padding-left:30px; text-align:justify; padding-right:5%;">Decrypt files encrypted by AES_NI, Alcatraz Locker, Apocalypse, AtomSilo & LockFile, Babuk, BadBlock, Bart, BigBobRoss, BTCWare, Crypt888, CryptoMix (Offline), CrySiS, EncrypTile, FindZip, Fonix, GandCrab, Globe, HermeticRansom, HiddenTear, Jigsaw,  LambdaLocker, Legion, NoobCrypt, Prometheus, Stampado, SZFLocker, TargetCompany, TeslaCrypt, Troldesh / Shade, XData.</p>
+                    <h3 style="text-align: left; padding-left: 5%">COST: FREE</H3>
+                </th>
+                <th><img src="{% static 'FCES3.png' %}" alt="medium photo" height="300px" width="400px" style="border-radius:5px; border-width:2px;margin-top:5%; margin-bottom:8%;">                    
+                    <h2 style="text-align: left; margin-top:5%;">Recovery and Backups</h2>
+                    <p style="color:#606060; font-size:14px; text-align: left; padding-left:30px; text-align:justify; padding-right:5%;">This will help recovery and backup data alongside will guide you throughout the process and help you secure your system.Recovery and backup of data is a crucial part of maintaining the security and integrity of your system. In the event of a data loss or system failure, having a backup ensures that you can recover your data and get your system up and running quickly. To ensure a successful recovery and backup process, it's important to have a comprehensive plan in place. This plan should include regularly scheduled backups, a secure storage location for your backups, and a clear process for restoring your data in the event of a failure.</p>
+                    <h3 style="text-align: left; padding-left: 5%">COST: PAID</H3>
+                </th>
+            </tr>
+            
+        </table>                 
+    </div>
+
+    <!-- This is the footer section which includes logo, contact information, navigation links, a newletter subscription form and a social media links -->
+    <div id="footer">
+        <div class="box" style="background-color:transparent;">
+            <div class="logo">
+                <img src="{% static 'logo.PNG' %}" alt="Logo">
+                <p class="logo-text">YARAShield</p>
+            </div>
+            <p style="line-height: 40px; padding-left: 10%;color:#606060;">+44 7352128727<br>
+
+                nissitapdl19@gmail.com<br>
+                
+                United Kingdom</p>
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <a href="/">Home</a><br>
+            <a href="Solution.html">Solution</a><br>
+            <a href="About.html">About</a><br>
+            <a href="Program.html">Programs</a><br>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button2" style="margin-left: -1%;">Get Started</a>
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <br>
+            <form action="https://formspree.io/f/xyyaerjq" method="POST">
+                <label for="email" style="color:#606060;">Subscribe to Our Newsletter</label>
+                <br>
+                <p style="color:#606060">Email*</p>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                <button type="submit">submit</button>
+            </form>
+               
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <p style="color:#606060; margin-bottom:-6%; margin-left: 12%;">Follow Us On:</p>
+            <ul>
+                <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a> &nbsp;
+                <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a> &nbsp;
+            
+                <p style="color:#606060; font-size:12px;margin-top:3%;">© 2026 by YARAShield.<br> Created by <br>Nischita Paudel</p>
+              </ul>
+            </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+
+# Django-generated files
+db.sqlite3
+media/
+staticfiles/
+
+# Local settings
+.env
+.vscode/
+
+# Never publish real malware
+malware_samples/
+ransomware_samples/
+*.exe
+*.dll

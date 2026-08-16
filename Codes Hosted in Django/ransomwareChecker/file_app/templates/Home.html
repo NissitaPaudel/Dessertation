@@ -1,0 +1,526 @@
+{% load static %}<!-- this loads the static files for the project -->
+<!--this begins the html code-->
+<!DOCTYPE html>
+<html>
+  <head> <!-- this includes the metadata about the page including the stylesheets and scripts -->
+    <style>
+      /*this provides effects on the visible areas of the browser window */
+      /* CSS code goes here */
+      /* this provides the effect to the visible area of the body section */
+      body {
+        height: 100vh;
+        overflow: scroll; /* this adds a scrollbar to the content exceeding it's height */
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+    }
+
+    /* this creates a flexible, fixed, evenly distributed centered items with transparent background */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0px; 
+    }
+
+    /* this creates a black background to the navigation bar on scrolling */ 
+    nav.scrolled{
+        background-color: black;
+    }
+
+    /* This applies style to lists within the navigation bar */
+    nav ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    /* This applies style to the list items within the navigation bar */
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    /* this applies style to all anchor tags within nav bar */
+    nav ul li a {
+        color: #f7f2f2;
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.7;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    /* this applies style to the anchor tags when hover over within the navigation bar */
+    nav ul li a:hover {
+        opacity: 1;
+    }  
+    
+    /* this provides style to the html element with ID 'header' */
+    #header {
+        height: 100%;
+        padding-top: 15%;
+        background-image: url({% static 'background.png' %});
+    }
+
+    /* this provides style to the html element with ID 'content' */
+    #content {
+        height: cover;
+        background-color: #010108;
+    }
+  
+    /* this provides style to the html element with ID 'footer' 
+        where the display is flexible and it will stick to the bottom of the viewport with browser compatibility */
+    #footer {
+        height: 400px;
+        background-color: #111311;
+        color: #f6f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+        justify-content: center;
+        position: -webkit-sticky;
+        width: 100%;
+    }
+     
+    /* this provides style to the button element with a transition effect */
+    .button {
+        display: inline-block;
+        background-color: #0b0e11;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    /* this changes background color when hover over */
+    .button:hover {
+        background-color: #2a296e;
+        
+    }
+
+    /* this provides style to the button element with a transition effect */
+    .button2 {
+        display: inline-block;
+        background-color: #ae3c3c;
+        color: #0d0a0a;
+        padding: 5px 20px;
+        border-radius: 5px;
+        border-width: 2px;
+        margin-left: 2%;
+        margin-top: 3%;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    /* this changes background color with style when hover over */
+    .button2:hover {
+        background-color: #09090b;
+        border-radius: 5px;
+        border-width: 2px;
+        border-color: #fff;
+        border-style: solid;
+        color: white;
+    }
+
+    /* this provides style to location to place a logo */
+    .logo {
+        padding-left: 5%;
+        display: flex;
+        align-items: center;
+    }
+
+    /* this provides style to the text appeared beside the logo */
+    .logo-text{
+        margin-left: 6px;
+        color: white;
+        font-weight: 700;
+    }
+
+    /* this provides the height and width of the logo */
+    .logo img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* this provides the style for heading 1 */ 
+    h1 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 60px;
+        color: white;
+        padding-left: 5%;
+        line-height: 50%;
+    }
+
+    /* this provides the style for heading 2 */
+    h2 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        font-size: 18px;
+        color: rgb(253, 248, 248);
+        padding-left: 5%;
+        line-height: 25%;
+    }
+
+    /* this provides the style for  heading 3 */
+    h3 {
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 200;
+        line-height: 150%;
+        color: white;
+    }
+
+    /* this provides a flexible container that holds a set of columns */
+    .container {
+        display:flex;
+        flex-direction: row;
+        margin: 0.25px;
+    }
+
+    /* this sets the style for each individual flexible column */
+    .column {
+        flex: 2;
+        flex-basis: 10px;
+        flex-wrap: wrap;
+        padding: 20px 20px;
+        padding-left: 6%;
+        padding-right: 6%;
+        padding-top: 10%;
+        margin-left: 5%;
+        height: 544.5px;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+    }
+     
+    /* this sets the margin of heading 3 in '.column' class */
+    .column h3 {
+        margin-top: 0;
+    }
+
+    /* this sets the style for the  paragraph within the '.column' class */
+    .column p {
+        margin-bottom: 0;
+        color: #fff;
+    }
+
+    /* this sets the style for the  child element within the container */
+    .combined {
+        background-image: url({% static 'background2.gif' %});
+        background-position: center;
+        height: 600px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-bottom: 5%;
+        padding-top: 20px;
+    }
+
+    /* this sets the margin of heading 3 in '.combined' class */
+    .combined h3 {
+        margin-top: 0;
+    }
+
+    /* this sets the margin of paragraph in '.combined' class */
+    .combined p {
+        margin-bottom: 0;
+    }
+    
+    /* this sets the style for each individual flexible column */
+    .column1 {
+        align-items: stretch;
+        flex: 2;
+        flex-wrap: wrap;
+        padding: 20px 20px;
+        background-color: #242222;
+        padding-right: 20%;
+        padding-bottom: 10%;
+        justify-content: space-between;
+        padding-top: 20%;
+        margin-right: 5%;
+        height: 270px;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+    }
+      
+    /* This provides style for a rectangular box */
+    .box {
+        width: 37%;
+        margin-bottom: 20px;
+        height: 230px;
+        margin-left: 30px;
+        background-color: #1b1b1b;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+    
+    /* this provides style for a class box1 and assign the order 1 to display */
+    .box1 {
+        order: 1;
+        padding-top: 7%;
+        margin-top: -380px;
+        margin-left: 20%;
+        margin-right: -30%;
+    }
+    
+    /* this provides style for a  class box1 and assign the order 2 to display */
+    .box2 {
+        order: 2;
+        padding-top: 7%;
+        margin-top: -198px;
+        margin-left: 80%;
+        margin-right: 40%;
+        padding-bottom: 5%;
+    }
+      
+    /* this provides style for a class box1 and assign the order 3 to display */
+    .box3 {
+        order: 3;
+        padding-top: 7%;
+        margin-top: 10%;
+        margin-left: 20%;
+        margin-right: -30%;
+    }
+    
+    /* this provides style for a class box1 and assign the order 4 to display */    
+    .box4 {
+        order: 4;
+        padding-top: 7%;
+        margin-top: -198px;
+        margin-left: 80%;
+        margin-right: 40%;
+    }
+
+    /* this sets the style for each individual flexible column */
+    .column2 {
+        flex: 2;
+        padding: 20px 20px;
+        background-color: #050505;
+        padding-right: 10%;
+        padding-bottom: 10%;
+        justify-content: space-between;
+        padding-top: 10%;
+        margin-right: 5%;
+        height: 417.5px;
+        box-shadow: 0 0 5px rgb(243, 241, 241);
+        margin-top: 5%;
+        margin-bottom: 5%; 
+        color: #606060;
+    }
+
+    /* this sets the style of paragraph within the column */
+    .column2 p {
+        font-size: 16px;
+        text-align:justify;
+        padding-left:30%;
+        padding-top: -2000px;
+    }
+
+    /* this sets the style for anchor used to create a hyperlink or link */
+    a {
+        text-decoration: none;
+        color: #606060;
+        line-height: 40px;
+        
+    }
+
+    /* This provides style for email input field within the class '.box' */
+    .box form input[type="email"] {
+        background-color: black;
+        color: #606060;
+        border: 2px solid #606060;;
+        padding: 10px;
+        width: 200px;
+        height: 20px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+
+    /* This provides style for the submission button within the '.box' class */
+    .box form button[type="submit"] {
+        background-color: black;
+        color: #606060;
+        border: 2px solid #606060;
+        padding: 13px 20px;
+        transition: background-color 0.3s;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+    
+    /* this changes background color of submission button when hovered over */
+    .box form button[type="submit"]:hover {
+        background-color: #2e2e5b;
+        cursor: pointer;
+    }
+
+    /* CSS coding ends */
+    </style>
+
+    <!-- this is a javascript used for the scroll and navigation element -->
+    <script>
+        /* this javascript adds class 'scrolled' when the user scrolls down and remoes it when the user is at the top of the page */
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('nav');
+            const scrollPosition = window.scrollY;
+          
+            if (scrollPosition > 0) {
+              header.classList.add('scrolled');
+            } else {
+              header.classList.remove('scrolled');
+            }
+          });
+    </script>
+
+    <!-- this includes an external resources such as a font-awesome stylesheet used to include it's library providing a sets of icons and symbols that cna be used within the webpage-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />      
+  </head>
+
+
+  <body>
+    <!-- this is the main content area -->
+    <!-- the displays the elements in the navigation bar -->
+    <nav>
+        <!-- this displays the logo and text with the brand name 'YARAShield' (YARA Shield)-->
+        <div class="logo">
+            <img src="{% static 'logo.PNG' %}" alt="Logo">
+            <p class="logo-text">YARAShield</p>
+        </div>
+
+        <!-- this displays the anchor that don't have specific order for a list in navigation bar -->
+        <ul>
+            <li><a href="#" onclick="location.reload();">Home</a></li>
+            <li><a href="Solution.html">Solution</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Program.html">Programs</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button">Get Started</a></li>
+        </ul>
+
+    </nav>
+    <!-- this is a header section-->
+    <div id="header">
+    <h1>The problem caused</h1>
+    <h1>by Ransomware can</h1>
+    <h1>be fixed.</h1>
+    <h2>Use Solutions to Get your files</h2>
+    <h2>scanned for ransomware.</h2>
+    <!-- this is a button directing to the Solution page-->
+    <a href="Solution.html" class="button2">Learn More</a>
+    </div>
+    
+    <!-- this is a content section-->
+    <div id="content">
+        <!-- this is a container with two columns and four boxes each containing an image, clickable title, and description-->
+        <div class="container">
+            <div class="column" style="background-image: url({% static 'background3.png' %}); background-size: cover; background-position: center;">       
+                <h3 style="font-size: 25px;">&emsp;&emsp;&emsp;Let US together Take <br>&emsp;&emsp;&emsp;Your Business to <br>&emsp;&emsp;&emsp;Higher Grounds</h3>
+                <p style="font-size: 10px; margin-top: -20px;padding-left: 78px;">YARAShield looks after you and your <br>organization. Establishing a better <br>bond of togetherness for us to grow <br>together.</p>
+                </div>
+            <div class="column1" style="background-color: #000010;">
+                <div class="box box1">
+                    <img src="{% static 'ransomware-detection.PNG' %}" alt="small photo" height="35px" width="50px">
+                    <a href = 'Solution.html'><h3 style="color:hwb(240 42% 12%); font-size: 16px; font-weight:bold"><br>Ransomware Detection</h3></a>
+                    <p style="font-size: 12px; color:#606060">You can scan your system <br>and search for cyberattacks <br>that your system is <br>vulnerable to.</p>
+                    <hr style="background: linear-gradient(to right, #0c5b76, #2f3230); height: 4px; border-radius: 5px; border: none;">
+                </div>
+                <div class="box box2">
+                    <img src="{% static 'KYDS.png' %}" alt="small photo" height="35px" width="50px">
+                    <a href = 'Program.html'><h3 style="color:hwb(240 42% 12%); font-size: 16px; font-weight:bold"><br>Keeps your data safe</h3></a>
+                    <p style="font-size: 12px; color:#606060">This system can be easily <br>implemented and used by <br>any user whether they have <br>knowledge about cyber <br>attacks or not.</p>
+                    <hr style="background: linear-gradient(to right, #0c5b76, #2f3230); height: 4px; border-radius: 5px; border: none;">
+                </div>
+                <div class="box box3">
+                    <img src="{% static 'DCF.png' %}" alt="small photo" height="35px" width="50px">
+                    <a href = 'Solution.html'><h3 style="color:hwb(240 42% 12%); font-size: 16px; font-weight:bold; margin-top: -18px;"><br>Deletion of corrupted Content of files</h3></a>
+                    <p style="font-size: 12px; color:#606060">Hi there, I am DEL. I would <br>be deleting your ransomware files if I find any of those within your <br>system.</p>
+                    <hr style="background: linear-gradient(to right, #0c5b76, #2f3230); height: 4px; border-radius: 5px; border: none;">
+                </div>
+                <div class="box box4">
+                    <img src="{% static 'FCES.png' %}" alt="small photo" height="35px" width="50px">
+                    <a href = 'Program.html'><h3 style="color:hwb(240 42% 12%); font-size: 16px; font-weight:bold"><br>Full Customer Experience Service</h3></a>
+                    <p style="font-size: 12px; color:#606060">You can contact us directly <br>by emailing, calling, or <br>messaging us and we would <br>surely get back to you <br>within 24 hrs.</p>
+                    <hr style="background: linear-gradient(to right, #0c5b76, #2f3230); height: 4px; border-radius: 5px; border: none;">
+                </div>                     
+            </div>
+        </div>
+        <!-- this is a container containing two columns where the first column contains an image and a title whereas the second column contains a paragraph with a button-->
+        <div class="container">
+            <div class="column" style="background-image: url({% static 'background4.png' %}); background-size: cover; background-position: center;margin-top: 5%;margin-bottom: 5%;">       
+                <h3 style="font-size: 25px; text-align: center;"><br><br><br>Unpredictable Situations? <br>We got you!</h3>
+            </div>
+            <div class="column2">
+                <p>With every evolution in technologies, there is advancement in the properties which makes ransomware spread broadly and unrecognizable by electronic devices. This system presents a ransomware detection system as a solution to the problems faced by ransomware attacks. It searches for harmful or compromised files and notifies the user of execution. As ransomware is most commonly infecting computers, this ransomware detection system helps to identify the ransomware's hidden files. This project helps to detect more advanced forms of ransomware and notifies the users of recent findings. It helps to prevent ransomware from entering the system and prevents the user from locking out of the system.
+                <br>With each evolving of threats and technologies, this system also takes on the ability to adapt to new ransomware and detect them in the near future.</p>
+                <a href="Solution.html" class="button2" style="margin-left: 30%;">Learn More</a>
+            </div>
+        </div>
+        <!-- this creates a 'combined' class-->
+        <div class="combined">
+            <h2 style="font-size: 35px; text-align:center;">We Take Your Security as Our Priority </h2>
+            <p style="font-size: 115px; text-align: left; color: rgb(97, 3, 31); padding-top: 20%";>&nbsp;15 &nbsp;&nbsp; 10K &nbsp;&nbsp;  25M &nbsp; 236.1M&nbsp;&nbsp;4K</p>
+            <h5 style="font-size:25px; color:rgb(153, 151, 151);margin-top:-5px;">&emsp;&nbsp;Countries&emsp;&emsp;&emsp;&emsp;&emsp;Ransomware found&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;   Solved Cases &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Affected people &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; Complained</h5>
+        </div>
+        <!--this is a container containing two columns where the first contians an image and a title whereas the second column contains a paragraph with a button-->
+        <div class="container">
+            <div class="column"style="background-image: url({% static 'background5.gif' %}); background-size: 180%; background-repeat: no-repeat; background-position: center;margin-top: 73.5px;padding-right: 20%;">
+                <h3 style="font-size: 25px; text-align: center;"><br><br><br>Are You Ready to Accelerate <br>Your Business?</h3>
+            </div>
+            <div class="column2" style="margin-bottom: 10%;">
+                <p style="padding-top: 20%;">You can apply for our services and request a trial period of 1 month or more. We will keep updating our and your system with regular scanning and implementation. We hope you would not be disappoint but rather form a better bonding with us.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button2" style="margin-left: 30%;">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- This is the footer section which includes logo, contact information, navigation links, a newletter subscription form and a social media links -->
+    <div id="footer">
+        <div class="box" style="background-color:transparent;">
+            <div class="logo">
+                <img src="{% static 'logo.PNG' %}" alt="Logo">
+                <p class="logo-text">YARAShield</p>
+            </div>
+            <p style="line-height: 40px; padding-left: 10%;color:#606060;">+44 7352128727<br>
+
+                nissitapdl19@gmail.com<br>
+                
+                United Kingdom</p>
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <a href="/">Home</a><br>
+            <a href="Solution.html">Solution</a><br>
+            <a href="About.html">About</a><br>
+            <a href="Program.html">Programs</a><br>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfqtDHnlqk-n4Ohk3vMa_wRdxoJ3W3Djf51gySSf4GPp_RNmA/viewform?usp=sf_link" class="button2" style="margin-left: -1%;">Get Started</a>
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <br>
+            <form action="https://formspree.io/f/xyyaerjq" method="POST">
+                <label for="email" style="color:#606060;">Subscribe to Our Newsletter</label>
+                <br>
+                <p style="color:#606060">Email*</p>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+                <button type="submit">submit</button>
+            </form>
+               
+          </div>
+          <div class="box" style="background-color: transparent;">
+            <p style="color:#606060; margin-bottom:-6%; margin-left: 12%;">Follow Us On:</p>
+            <ul>
+                <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a> &nbsp;
+                <a href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a> &nbsp;
+                <p style="color:#606060; font-size:12px;margin-top:3%;">© 2026 by YARAShield.<br> Created by <br>Nischita Paudel</p>
+              </ul>
+            </div>
+    </div>
+  </body>
+</html>
