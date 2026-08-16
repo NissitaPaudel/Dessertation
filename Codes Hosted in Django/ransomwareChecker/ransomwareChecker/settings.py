@@ -8,6 +8,12 @@ from pathlib import Path
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "yarashield-local-development-only-key-not-for-production-2026",
+)
 TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
