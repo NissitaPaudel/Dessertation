@@ -17,8 +17,7 @@ rule RANSOM_WannaCry_YARAShield
         indicator_type = "Static strings and PE file header"
         purpose = "Controlled MSc research evaluation"
         source = "Indicators derived from Microsoft and CISA reporting"
-        confidence = "Medium - requires multiple indicators"
-
+        
     strings:
         $wc_service = "mssecsvc2.0" ascii wide nocase
         $wc_scheduler = "tasksche.exe" ascii wide nocase
