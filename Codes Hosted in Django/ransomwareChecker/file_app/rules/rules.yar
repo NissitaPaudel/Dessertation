@@ -2,8 +2,8 @@ import "hash"
 
 /*
     YARAShield locked research ruleset
-    Version: 1.0
     Date: 2026-08-03
+    Purpose = "Controlled MSc research evaluation"
 */
 
 rule RANSOM_WannaCry_YARAShield
@@ -17,7 +17,7 @@ rule RANSOM_WannaCry_YARAShield
         indicator_type = "Static strings and PE file header"
         purpose = "Controlled MSc research evaluation"
         source = "Indicators derived from Microsoft and CISA reporting"
-        
+
     strings:
         $wc_service = "mssecsvc2.0" ascii wide nocase
         $wc_scheduler = "tasksche.exe" ascii wide nocase
@@ -105,8 +105,6 @@ rule MALDOC_RTF_MalVer_Objects_YARAShield
         family = "Malicious Office Document"
         category = "Embedded RTF exploit document"
         indicator_type = "Abnormal RTF header and embedded object indicators"
-        purpose = "Controlled MSc research evaluation"
-        confidence = "Medium - suspicious document structure"
         reference = "CVE-2017-11882-associated exploit documents"
 
     strings:

@@ -835,7 +835,7 @@ def Solution(request):
                 )
 
                 # -------------------------------------------------
-                # Detailed matched patterns stay in terminal
+                # Detailed matched patterns stays in terminal
                 # -------------------------------------------------
 
                 for string_match in match.strings:
@@ -886,7 +886,7 @@ def Solution(request):
                         )
 
             # -------------------------------------------------
-            # Prepare webpage result
+            # To Prepare webpage result
             # -------------------------------------------------
 
             context["matched_results"] = (
@@ -919,7 +919,7 @@ def Solution(request):
             )
 
         # -----------------------------------------------------
-        # Error handling
+        # for error handling
         # -----------------------------------------------------
 
         except yara.TimeoutError:
@@ -1044,7 +1044,7 @@ def Solution(request):
 
         finally:
             # -------------------------------------------------
-            # Release uploaded data
+            # to release uploaded data
             # -------------------------------------------------
 
             file_data = None
